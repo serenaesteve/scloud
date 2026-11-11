@@ -11,7 +11,7 @@ Python 3.11 o más nuevo. El servidor usa Flask; el cliente, solo la biblioteca 
 ```bash
 python3 -m scloud servir                       # web en http://127.0.0.1:8104 y equipos en el 8105 (TLS)
 python3 -m unittest discover -s pruebas -t .   # 39 pruebas
-/root/life-dashboard/.venv/bin/python pruebas/navegador.py [--capturas DIR]   # recorrido con Chromium
+python3 pruebas/navegador.py [--capturas DIR]  # recorrido con Chromium (necesita Playwright)
 python3 experimentos/latencia.py               # ¿compensan los hilos? (con latencia simulada)
 ```
 
@@ -20,7 +20,7 @@ python3 experimentos/latencia.py               # ¿compensan los hilos? (con lat
 En la web, **Equipos → Conectar un equipo** da el cliente (un ZIP) y la orden para conectarlo:
 
 ```bash
-python3 -m scloud conectar scl_… --servidor scloud.serenaesteve.com --puerto 8105 --huella AB:55:…
+python3 -m scloud conectar scl_… --servidor scloud.serenaesteve.com --puerto 8105 --huella …
 python3 -m scloud ls /Fotos
 python3 -m scloud subir ~/Fotos --a / --hilos 4      # carpetas enteras, también las vacías
 python3 -m scloud bajar /Fotos --a ~/Descargas
@@ -62,9 +62,6 @@ Los criterios de evaluación de 0490 están en [CRITERIOS.md](CRITERIOS.md).
 | `experimentos/` | La medida de hilos con latencia |
 | `capturas/` | Capturas del recorrido (`pruebas/navegador.py --capturas capturas`) |
 | `despliegue/` | Servicio, Apache, copia diaria y el script para publicar |
-| `linkedin/` | Las publicaciones 43 y 44 con sus chuletas (copias: las originales siguen en /root/publicaciones-linkedin y /root/guion-examen) |
-
-Fuera de aquí solo está lo que el sistema necesita en su sitio, y todo sale de `despliegue/`: la copia publicada y los datos reales en `/srv/scloud`, la configuración en `/etc` (systemd, Apache y Let's Encrypt) y las copias del índice en `/root/respaldos-scloud`.
 
 ## Publicarlo
 
@@ -72,4 +69,4 @@ Fuera de aquí solo está lo que el sistema necesita en su sitio, y todo sale de
 sudo bash despliegue/desplegar.sh
 ```
 
-Crea el usuario `scloud`, copia el código a `/srv/scloud/app`, arranca `scloud.service` (web en 127.0.0.1:8104 tras Apache con Let's Encrypt; equipos en el 8105 abierto a internet), empaqueta el cliente y programa una copia diaria del índice en `/root/respaldos-scloud` (14 días). No toca los datos de `/srv/scloud/datos`. Cada cuenta nueva tiene 2 GB, y scloud deja siempre 20 GB libres en el disco, que es de todos los servicios de la máquina.
+Crea un usuario de sistema propio para el servicio, lo arranca con systemd (la web detrás de Apache con HTTPS y el canal de los equipos en el 8105), empaqueta el cliente para descargarlo desde la web y programa una copia diaria del índice. Se puede lanzar las veces que haga falta: no toca los datos. Cada cuenta nueva tiene 2 GB, y scloud deja siempre 20 GB libres en el disco.
