@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Te han compartido algo · scloud</title>
+<meta name="description" content="Un enlace de scloud para descargar o enviar archivos.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/icono.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/cielo.css">
+<link rel="stylesheet" href="/css/enlace.css">
+<script type="module" src="/js/enlace.js"></script>
+</head>
+<body class="publico">
+<svg class="sprite" aria-hidden="true">
+  <symbol id="i-carpeta" viewBox="0 0 24 24"><path d="M3.5 7.5a2 2 0 0 1 2-2h4l2 2.2h7a2 2 0 0 1 2 2v7.8a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2Z"/></symbol>
+  <symbol id="i-archivo" viewBox="0 0 24 24"><path d="M6.5 3.5h7l4.5 4.5v11a2 2 0 0 1-2 2h-9.5a2 2 0 0 1-2-2v-13.5a2 2 0 0 1 2-2Z"/><path d="M13.5 3.5V8H18"/></symbol>
+  <symbol id="i-imagen" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="3"/><circle cx="9" cy="9.5" r="1.6"/><path d="m4 17 4.8-4.6 3.4 3.1 2.6-2.4L20 17.5"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="12.5" height="13" rx="3"/><path d="m16 10.2 4.5-2.6v8.8L16 13.8"/></symbol>
+  <symbol id="i-audio" viewBox="0 0 24 24"><path d="M9 17.5V6l10-2v11.5"/><circle cx="6.8" cy="17.5" r="2.3"/><circle cx="16.8" cy="15.5" r="2.3"/></symbol>
+  <symbol id="i-texto" viewBox="0 0 24 24"><path d="M6.5 3.5h7l4.5 4.5v11a2 2 0 0 1-2 2h-9.5a2 2 0 0 1-2-2v-13.5a2 2 0 0 1 2-2Z"/><path d="M8.5 12.5h7M8.5 16h5"/></symbol>
+  <symbol id="i-pdf" viewBox="0 0 24 24"><path d="M6.5 3.5h7l4.5 4.5v11a2 2 0 0 1-2 2h-9.5a2 2 0 0 1-2-2v-13.5a2 2 0 0 1 2-2Z"/><path d="M8 16.5c2.5-1 5.5-4.6 4.5-6.3-.8-1.3-2 .9.3 3.2 1.8 1.8 3.8 2 3.5 1-.4-1.4-5.5-.3-8.3 2.1Z"/></symbol>
+  <symbol id="i-zip" viewBox="0 0 24 24"><path d="M6.5 3.5h11a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2h-11a2 2 0 0 1-2-2v-13a2 2 0 0 1 2-2Z"/><path d="M11 3.5v2h2v2h-2v2h2v2h-2"/><rect x="10" y="13" width="4" height="3.5" rx="1"/></symbol>
+  <symbol id="i-codigo" viewBox="0 0 24 24"><path d="m8.5 8-4 4 4 4M15.5 8l4 4-4 4M13.3 6l-2.6 12"/></symbol>
+  <symbol id="i-bajar" viewBox="0 0 24 24"><path d="M12 4.5V16M7 11.2l5 4.8 5-4.8M5 15.5v2a2.5 2.5 0 0 0 2.5 2.5h9a2.5 2.5 0 0 0 2.5-2.5v-2"/></symbol>
+  <symbol id="i-subir" viewBox="0 0 24 24"><path d="M12 16V4.5M7 9.3 12 4.5l5 4.8M5 15.5v2a2.5 2.5 0 0 0 2.5 2.5h9a2.5 2.5 0 0 0 2.5-2.5v-2"/></symbol>
+  <symbol id="i-candado" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="9.5" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></symbol>
+  <symbol id="i-nube" viewBox="0 0 24 24"><path d="M7.5 18.5h9.5a4 4 0 0 0 .8-7.9 5.5 5.5 0 0 0-10.6-1.4A4.7 4.7 0 0 0 7.5 18.5Z"/></symbol>
+  <symbol id="i-cerrar" viewBox="0 0 24 24"><path d="m6.5 6.5 11 11M17.5 6.5l-11 11"/></symbol>
+</svg>
+<header class="publico-marca"><img src="/icono.svg" alt="" width="30" height="30"><span>scloud</span></header>
+<main class="publico-tarjeta" id="tarjeta" aria-live="polite">
+  <ul class="esqueleto" aria-label="Cargando"><li></li><li></li><li></li></ul>
+</main>
+<div class="avisos" id="avisos" aria-live="polite"></div>
+</body>
+</html>

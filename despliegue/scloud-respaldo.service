@@ -1,0 +1,6 @@
+[Unit]
+Description=Copia del índice de scloud
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/scloud-respaldar

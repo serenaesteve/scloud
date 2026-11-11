@@ -1,0 +1,9 @@
+[Unit]
+Description=Copia diaria del índice de scloud
+
+[Timer]
+OnCalendar=*-*-* 04:40
+Persistent=true
+
+[Install]
+WantedBy=timers.target

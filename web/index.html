@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>scloud · tu nube privada</title>
+<meta name="description" content="scloud: sube, comparte y sincroniza tus archivos en tu propia nube.">
+<meta name="theme-color" content="#dfe6fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1b1c33" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/icono.svg" type="image/svg+xml">
+<link rel="preload" href="/fuentes/DMSans.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/cielo.css">
+<script type="module" src="/js/app.js"></script>
+</head>
+<body>
+<svg class="sprite" aria-hidden="true">
+  <symbol id="i-carpeta" viewBox="0 0 24 24"><path d="M3.5 7.5a2 2 0 0 1 2-2h4l2 2.2h7a2 2 0 0 1 2 2v7.8a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2Z"/></symbol>
+  <symbol id="i-archivo" viewBox="0 0 24 24"><path d="M6.5 3.5h7l4.5 4.5v11a2 2 0 0 1-2 2h-9.5a2 2 0 0 1-2-2v-13.5a2 2 0 0 1 2-2Z"/><path d="M13.5 3.5V8H18"/></symbol>
+  <symbol id="i-imagen" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="3"/><circle cx="9" cy="9.5" r="1.6"/><path d="m4 17 4.8-4.6 3.4 3.1 2.6-2.4L20 17.5"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="12.5" height="13" rx="3"/><path d="m16 10.2 4.5-2.6v8.8L16 13.8"/></symbol>
+  <symbol id="i-audio" viewBox="0 0 24 24"><path d="M9 17.5V6l10-2v11.5"/><circle cx="6.8" cy="17.5" r="2.3"/><circle cx="16.8" cy="15.5" r="2.3"/></symbol>
+  <symbol id="i-texto" viewBox="0 0 24 24"><path d="M6.5 3.5h7l4.5 4.5v11a2 2 0 0 1-2 2h-9.5a2 2 0 0 1-2-2v-13.5a2 2 0 0 1 2-2Z"/><path d="M8.5 12.5h7M8.5 16h5"/></symbol>
+  <symbol id="i-pdf" viewBox="0 0 24 24"><path d="M6.5 3.5h7l4.5 4.5v11a2 2 0 0 1-2 2h-9.5a2 2 0 0 1-2-2v-13.5a2 2 0 0 1 2-2Z"/><path d="M8 16.5c2.5-1 5.5-4.6 4.5-6.3-.8-1.3-2 .9.3 3.2 1.8 1.8 3.8 2 3.5 1-.4-1.4-5.5-.3-8.3 2.1Z"/></symbol>
+  <symbol id="i-zip" viewBox="0 0 24 24"><path d="M6.5 3.5h11a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2h-11a2 2 0 0 1-2-2v-13a2 2 0 0 1 2-2Z"/><path d="M11 3.5v2h2v2h-2v2h2v2h-2"/><rect x="10" y="13" width="4" height="3.5" rx="1"/></symbol>
+  <symbol id="i-codigo" viewBox="0 0 24 24"><path d="m8.5 8-4 4 4 4M15.5 8l4 4-4 4M13.3 6l-2.6 12"/></symbol>
+  <symbol id="i-subir" viewBox="0 0 24 24"><path d="M12 16V4.5M7 9.3 12 4.5l5 4.8M5 15.5v2a2.5 2.5 0 0 0 2.5 2.5h9a2.5 2.5 0 0 0 2.5-2.5v-2"/></symbol>
+  <symbol id="i-bajar" viewBox="0 0 24 24"><path d="M12 4.5V16M7 11.2l5 4.8 5-4.8M5 15.5v2a2.5 2.5 0 0 0 2.5 2.5h9a2.5 2.5 0 0 0 2.5-2.5v-2"/></symbol>
+  <symbol id="i-mas" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-carpeta-mas" viewBox="0 0 24 24"><path d="M3.5 7.5a2 2 0 0 1 2-2h4l2 2.2h7a2 2 0 0 1 2 2v7.8a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2Z"/><path d="M12 11v5M9.5 13.5h5"/></symbol>
+  <symbol id="i-buscar" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 4.5 4.5"/></symbol>
+  <symbol id="i-compartir" viewBox="0 0 24 24"><circle cx="9" cy="8.5" r="3.2"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><path d="M17 8v6M14 11h6"/></symbol>
+  <symbol id="i-enlace" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></symbol>
+  <symbol id="i-papelera" viewBox="0 0 24 24"><path d="M4.5 7h15M9.5 7V5a1.5 1.5 0 0 1 1.5-1.5h2A1.5 1.5 0 0 1 14.5 5v2M6.5 7l.8 11.5a2 2 0 0 0 2 1.8h5.4a2 2 0 0 0 2-1.8L17.5 7"/></symbol>
+  <symbol id="i-mover" viewBox="0 0 24 24"><path d="M3.5 7.5a2 2 0 0 1 2-2h4l2 2.2h7a2 2 0 0 1 2 2v7.8a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2Z"/><path d="M9 13.5h6M12.5 11l2.5 2.5-2.5 2.5"/></symbol>
+  <symbol id="i-lapiz" viewBox="0 0 24 24"><path d="m14.5 5.5 4 4M4.5 19.5l1-4.5L15.8 4.7a1.8 1.8 0 0 1 2.5 0l1 1a1.8 1.8 0 0 1 0 2.5L9 18.5Z"/></symbol>
+  <symbol id="i-puntos" viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="18" cy="12" r="1.3"/></symbol>
+  <symbol id="i-cerrar" viewBox="0 0 24 24"><path d="m6.5 6.5 11 11M17.5 6.5l-11 11"/></symbol>
+  <symbol id="i-equipo" viewBox="0 0 24 24"><rect x="4.5" y="5" width="15" height="10.5" rx="2"/><path d="M2.5 19h19"/></symbol>
+  <symbol id="i-reloj" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-personas" viewBox="0 0 24 24"><circle cx="9" cy="9" r="3"/><path d="M3.5 19c.5-3 2.7-4.7 5.5-4.7s5 1.7 5.5 4.7"/><path d="M15.5 6.3a3 3 0 0 1 0 5.4M17 14.6c2 .6 3.2 2.1 3.5 4.4"/></symbol>
+  <symbol id="i-nube" viewBox="0 0 24 24"><path d="M7.5 18.5h9.5a4 4 0 0 0 .8-7.9 5.5 5.5 0 0 0-10.6-1.4A4.7 4.7 0 0 0 7.5 18.5Z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5.5 12.5 4 4 9-9"/></symbol>
+  <symbol id="i-lista" viewBox="0 0 24 24"><path d="M9 6.5h11M9 12h11M9 17.5h11"/><circle cx="4.8" cy="6.5" r=".9"/><circle cx="4.8" cy="12" r=".9"/><circle cx="4.8" cy="17.5" r=".9"/></symbol>
+  <symbol id="i-cuadricula" viewBox="0 0 24 24"><rect x="4" y="4" width="6.8" height="6.8" rx="2"/><rect x="13.2" y="4" width="6.8" height="6.8" rx="2"/><rect x="4" y="13.2" width="6.8" height="6.8" rx="2"/><rect x="13.2" y="13.2" width="6.8" height="6.8" rx="2"/></symbol>
+  <symbol id="i-candado" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="9.5" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></symbol>
+  <symbol id="i-recuperar" viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3"/><path d="M4.5 4.5v4h4"/></symbol>
+  <symbol id="i-copiar" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="11" height="11" rx="2.5"/><path d="M15.5 8.5V6.5a2 2 0 0 0-2-2h-7a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h2"/></symbol>
+  <symbol id="i-salir" viewBox="0 0 24 24"><path d="M14 4.5h3.5a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H14M10 16l4-4-4-4M14 12H4.5"/></symbol>
+  <symbol id="i-llave" viewBox="0 0 24 24"><circle cx="8" cy="15" r="3.5"/><path d="m10.5 12.5 8-8M15.5 7.5l2.5 2.5M17 6l2 2"/></symbol>
+  <symbol id="i-luna" viewBox="0 0 24 24"><path d="M19 14.5A7.5 7.5 0 0 1 9.5 5a7.5 7.5 0 1 0 9.5 9.5Z"/></symbol>
+  <symbol id="i-atras" viewBox="0 0 24 24"><path d="M14.5 6 8.5 12l6 6"/></symbol>
+  <symbol id="i-buzon" viewBox="0 0 24 24"><path d="M4 13.5 6.3 6a2 2 0 0 1 1.9-1.5h7.6A2 2 0 0 1 17.7 6l2.3 7.5v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M4 13.5h4.5l1 2h5l1-2H20"/></symbol>
+  <symbol id="i-sala" viewBox="0 0 24 24"><path d="M4 18.5V12M9.3 18.5v-9M14.6 18.5V5.5M20 18.5v-6"/></symbol>
+</svg>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+
+<!-- ============================================================ entrar -->
+<main id="acceso" class="acceso" hidden>
+  <div class="acceso-cielo" aria-hidden="true">
+    <span class="nubecilla n1"></span><span class="nubecilla n2"></span><span class="nubecilla n3"></span>
+  </div>
+  <section class="acceso-tarjeta">
+    <img src="/icono.svg" alt="" width="64" height="64" class="acceso-logo">
+    <h1 class="acceso-titulo">scloud</h1>
+    <p class="acceso-sub">Tus archivos en tu propia nube: súbelos, compártelos y tenlos iguales en todos tus equipos.</p>
+    <div class="conmutador" role="tablist" aria-label="Entrar o crear cuenta">
+      <button role="tab" aria-selected="true" data-modo="entrar">Entrar</button>
+      <button role="tab" aria-selected="false" data-modo="registro">Crear cuenta</button>
+      <span class="conmutador-gota" aria-hidden="true"></span>
+    </div>
+    <form id="form-acceso" class="formulario" novalidate>
+      <label class="campo solo-registro" hidden>
+        <span>Tu nombre</span>
+        <input name="nombre" autocomplete="name" maxlength="60" placeholder="Como quieras que te vean">
+      </label>
+      <label class="campo">
+        <span>Usuario</span>
+        <input name="usuario" autocomplete="username" autocapitalize="none" spellcheck="false" required minlength="3" maxlength="32">
+        <small class="solo-registro ayuda" hidden>Con él te encuentran para compartir. Letras, números, punto y guion bajo.</small>
+      </label>
+      <label class="campo">
+        <span>Contraseña</span>
+        <input name="clave" type="password" autocomplete="current-password" required minlength="8">
+        <small class="solo-registro ayuda" hidden>Al menos 8 caracteres.</small>
+      </label>
+      <p class="error-form" role="alert" hidden></p>
+      <button class="boton primario ancho" type="submit"><span>Entrar en mi nube</span></button>
+    </form>
+    <p class="acceso-pie">Qué se guarda y quién puede verlo: <a href="/privacidad">privacidad</a>.</p>
+  </section>
+</main>
+
+<!-- ============================================================== app -->
+<div id="app" class="app" hidden>
+  <header class="membrete">
+    <a class="marca" href="#/" aria-label="scloud, ir a Mi nube">
+      <img src="/icono.svg" alt="" width="34" height="34"><span>scloud</span>
+    </a>
+    <form class="buscador" role="search" id="form-buscar">
+      <svg class="ico"><use href="#i-buscar"/></svg>
+      <input type="search" id="buscar" placeholder="Buscar en mi nube" aria-label="Buscar en mi nube" autocomplete="off">
+    </form>
+    <button class="cuota" id="cuota" type="button" aria-label="Espacio usado">
+      <span class="gota-nivel" aria-hidden="true"><span class="agua"></span></span>
+      <span class="cuota-texto"><b id="cuota-usado">—</b><small id="cuota-total"></small></span>
+    </button>
+    <div class="cuenta">
+      <button class="avatar" id="avatar" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Tu cuenta"></button>
+      <div class="menu" id="menu-cuenta" role="menu" hidden>
+        <p class="menu-quien"><b id="menu-nombre"></b><small id="menu-usuario"></small></p>
+        <button role="menuitem" data-accion="clave"><svg class="ico"><use href="#i-llave"/></svg>Cambiar contraseña</button>
+        <button role="menuitem" data-accion="tema"><svg class="ico"><use href="#i-luna"/></svg><span id="tema-texto">Cielo de noche</span></button>
+        <button role="menuitem" data-accion="sesiones"><svg class="ico"><use href="#i-candado"/></svg>Cerrar las demás sesiones</button>
+        <a role="menuitem" href="/privacidad" target="_blank" rel="noopener"><svg class="ico"><use href="#i-candado"/></svg>Privacidad</a>
+        <button role="menuitem" data-accion="salir"><svg class="ico"><use href="#i-salir"/></svg>Salir</button>
+        <hr>
+        <button role="menuitem" data-accion="borrar-cuenta" class="peligro"><svg class="ico"><use href="#i-papelera"/></svg>Borrar mi cuenta</button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="espacios" aria-label="Secciones">
+    <a href="#/" data-vista="nube"><svg class="ico"><use href="#i-nube"/></svg><span>Mi nube</span></a>
+    <a href="#/recientes" data-vista="recientes"><svg class="ico"><use href="#i-reloj"/></svg><span>Recientes</span></a>
+    <a href="#/compartido" data-vista="compartido"><svg class="ico"><use href="#i-personas"/></svg><span>Compartido</span></a>
+    <a href="#/enlaces" data-vista="enlaces"><svg class="ico"><use href="#i-enlace"/></svg><span>Enlaces</span></a>
+    <a href="#/equipos" data-vista="equipos"><svg class="ico"><use href="#i-equipo"/></svg><span>Equipos</span></a>
+    <a href="#/papelera" data-vista="papelera"><svg class="ico"><use href="#i-papelera"/></svg><span>Papelera</span></a>
+    <span class="espacios-gota" aria-hidden="true"></span>
+  </nav>
+
+  <main id="contenido" class="hoja" tabindex="-1">
+    <div class="hoja-cabeza">
+      <div class="hoja-titulos">
+        <nav class="migas" id="migas" aria-label="Estás en"></nav>
+        <h1 id="titulo">Mi nube</h1>
+        <p class="hoja-nota" id="nota" hidden></p>
+      </div>
+      <div class="acciones" id="acciones"></div>
+    </div>
+    <div id="vista" class="vista"></div>
+  </main>
+
+  <div class="barra-seleccion" id="seleccion" hidden>
+    <span id="sel-cuenta"></span>
+    <button class="boton suave" data-sel="bajar"><svg class="ico"><use href="#i-bajar"/></svg><span>Descargar</span></button>
+    <button class="boton suave" data-sel="mover"><svg class="ico"><use href="#i-mover"/></svg><span>Mover</span></button>
+    <button class="boton suave peligro" data-sel="papelera"><svg class="ico"><use href="#i-papelera"/></svg><span>A la papelera</span></button>
+    <button class="boton icono" data-sel="limpiar" aria-label="Quitar la selección"><svg class="ico"><use href="#i-cerrar"/></svg></button>
+  </div>
+
+  <aside class="lluvia" id="lluvia" aria-label="Transferencias" hidden>
+    <button class="lluvia-resumen" id="lluvia-resumen" aria-expanded="false" aria-controls="lluvia-lista">
+      <span class="gota-nivel grande" aria-hidden="true"><span class="agua"></span></span>
+      <span class="lluvia-texto"><b id="lluvia-titulo"></b><small id="lluvia-sub"></small></span>
+    </button>
+    <ul class="lluvia-lista" id="lluvia-lista" hidden></ul>
+  </aside>
+
+  <div class="soltar" id="soltar" hidden aria-hidden="true">
+    <div class="soltar-nube">
+      <svg viewBox="0 0 24 24"><use href="#i-nube"/></svg>
+      <p>Suéltalos en <b id="soltar-donde">Mi nube</b></p>
+    </div>
+  </div>
+
+  <dialog id="dialogo" class="dialogo"></dialog>
+  <div class="menu flotante" id="menu-nodo" role="menu" hidden></div>
+  <input type="file" id="elegir-archivos" multiple hidden>
+  <input type="file" id="elegir-carpeta" webkitdirectory hidden>
+</div>
+
+<div class="avisos" id="avisos" aria-live="polite"></div>
+</body>
+</html>

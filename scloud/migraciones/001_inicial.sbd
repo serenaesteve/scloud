@@ -1,0 +1,111 @@
+-- =====================================================================
+--  Migración 001 · Esquema inicial de scloud
+-- =====================================================================
+--  Los archivos no están en la base: aquí solo va el árbol (carpetas y
+--  archivos con su nombre, tamaño y huella SHA-256). El contenido se guarda
+--  aparte, en datos/bloques, con la huella como nombre. Dos archivos iguales
+--  del mismo usuario ocupan un solo bloque en disco.
+--  Los momentos son milisegundos desde 1970 (UTC).
+-- =====================================================================
+
+crear tabla ajustes {
+  clave  texto clave
+  valor  texto obligatorio
+}
+
+crear tabla usuarios {
+  id        entero clave
+  -- con el que se entra y con el que te comparten: minúsculas, números, punto y guion bajo
+  nombre    texto(32) obligatorio unico comprobar longitud(nombre) >= 3
+  visible   texto(60) obligatorio comprobar longitud(recortar(visible)) > 0
+  rol       texto = "usuario" comprobar rol en ["usuario", "admin"]
+  -- scrypt (n = 2^14, r = 8, p = 1) de la contraseña con una sal propia
+  clave_hash  texto obligatorio
+  clave_sal   texto obligatorio
+  cuota     entero obligatorio comprobar cuota > 0
+  creado    entero obligatorio
+  -- sube al cambiar la contraseña o al «cerrar todas las sesiones»
+  generacion  entero = 1
+}
+
+-- Un árbol por usuario. padre_id = 0 es la raíz de su nube.
+-- Lo que se borra va a la papelera: «borrado» guarda cuándo y
+-- «papelera_de» qué nodo se borró (el mismo, o la carpeta que lo contenía),
+-- así se recupera una carpeta entera de una vez.
+crear tabla nodos {
+  id             entero clave
+  propietario_id entero obligatorio -> usuarios(id) al borrar cascada
+  padre_id       entero obligatorio
+  nombre         texto(255) obligatorio comprobar longitud(nombre) > 0
+  tipo           texto obligatorio comprobar tipo en ["carpeta", "archivo"]
+  tamano         entero = 0 comprobar tamano >= 0
+  huella         texto
+  mime           texto
+  version        entero = 1
+  creado         entero obligatorio
+  modificado     entero obligatorio
+  borrado        entero = 0
+  papelera_de    entero = 0
+  unico (propietario_id, padre_id, nombre, borrado)
+}
+indexar nodos (padre_id)
+indexar nodos (propietario_id)
+indexar nodos (huella)
+
+-- Compartir con otra cuenta. «ver» deja abrir y descargar; «editar»
+-- además subir, crear carpetas, renombrar y mandar a la papelera.
+-- Un permiso sobre una carpeta vale para todo lo que hay dentro.
+crear tabla compartidos {
+  id          entero clave
+  nodo_id     entero obligatorio -> nodos(id) al borrar cascada
+  usuario_id  entero obligatorio -> usuarios(id) al borrar cascada
+  permiso     texto obligatorio comprobar permiso en ["ver", "editar"]
+  por_id      entero obligatorio
+  creado      entero obligatorio
+  unico (nodo_id, usuario_id)
+}
+indexar compartidos (usuario_id)
+
+-- Enlaces de descarga. Del token solo se guarda su SHA-256: quien lea la
+-- base no puede abrir los enlaces. «subir» es un buzón: deja que alguien
+-- sin cuenta te mande archivos a esa carpeta, sin ver lo que hay.
+crear tabla enlaces {
+  id             entero clave
+  token_hash     texto obligatorio unico
+  -- los 6 primeros caracteres, para reconocerlo en la lista
+  pista          texto obligatorio
+  nodo_id        entero obligatorio -> nodos(id) al borrar cascada
+  creador_id     entero obligatorio -> usuarios(id) al borrar cascada
+  permiso        texto = "descargar" comprobar permiso en ["descargar", "subir"]
+  clave_hash     texto
+  clave_sal      texto
+  caduca         entero = 0
+  max_descargas  entero = 0
+  descargas      entero = 0
+  creado         entero obligatorio
+}
+
+-- Cada equipo con el cliente de escritorio tiene su propio token.
+-- Se puede quitar uno sin cambiar la contraseña.
+crear tabla equipos {
+  id          entero clave
+  usuario_id  entero obligatorio -> usuarios(id) al borrar cascada
+  nombre      texto(60) obligatorio
+  token_hash  texto obligatorio unico
+  creado      entero obligatorio
+  visto       entero = 0
+  carpetas    texto = ""
+}
+
+-- Lo que entra y sale: para el gráfico de actividad y para depurar.
+crear tabla historial {
+  id          entero clave
+  usuario_id  entero obligatorio -> usuarios(id) al borrar cascada
+  sentido     texto obligatorio comprobar sentido en ["subida", "bajada"]
+  canal       texto obligatorio comprobar canal en ["web", "equipo", "enlace"]
+  nombre      texto obligatorio
+  bytes       entero obligatorio
+  ms          entero obligatorio
+  momento     entero obligatorio
+}
+indexar historial (usuario_id)

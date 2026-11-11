@@ -1,0 +1,37 @@
+[Unit]
+Description=scloud: nube privada de archivos (web con Flask y servidor de equipos por sockets)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=scloud
+WorkingDirectory=/srv/scloud/app
+Environment=PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+# La web solo en esta máquina (Apache pone el HTTPS delante).
+# El canal de los equipos (SCL/1 sobre TLS) sí da a internet, en el 8105.
+# 2 GB por cuenta nueva y 20 GB del disco que nunca se tocan: la máquina es de todos los servicios.
+ExecStart=/usr/bin/python3 -m scloud servir --datos /srv/scloud/datos --host 127.0.0.1 --puerto-web 8104 --host-equipos 0.0.0.0 --puerto-equipos 8105 --publico --cuota 2 --reserva 20
+# SIGTERM: Werkzeug deja de aceptar, se cierran las conexiones de los equipos y se guarda la base
+KillSignal=SIGTERM
+TimeoutStopSec=15
+Restart=on-failure
+RestartSec=2
+# Un hilo por petición y por conexión de equipo
+TasksMax=1500
+LimitNOFILE=4096
+MemoryMax=768M
+# Endurecimiento: solo puede escribir en su carpeta de datos
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/srv/scloud/datos
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

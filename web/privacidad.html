@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacidad · scloud</title>
+<meta name="description" content="Qué guarda scloud, quién puede verlo y cómo borrarlo.">
+<link rel="icon" href="/icono.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/cielo.css">
+<link rel="stylesheet" href="/css/enlace.css">
+</head>
+<body class="publico">
+<header class="publico-marca"><a href="/" class="marca"><img src="/icono.svg" alt="" width="30" height="30"><span>scloud</span></a></header>
+<main class="publico-tarjeta texto-legal">
+  <h1>Privacidad</h1>
+  <p>scloud es un proyecto personal y de clase: una nube pequeña para guardar y compartir archivos. Aquí está, sin letra pequeña, qué se guarda y quién lo puede ver.</p>
+
+  <h2>Qué se guarda</h2>
+  <ul>
+    <li><b>Tu cuenta:</b> el usuario, el nombre que elijas y una huella de tu contraseña (scrypt con sal). La contraseña en sí no se guarda en ningún sitio.</li>
+    <li><b>Tus archivos:</b> su contenido, su nombre, su tamaño, sus fechas y en qué carpeta están.</li>
+    <li><b>Lo que compartes:</b> con quién y con qué permiso. De los enlaces solo se guarda su huella, no el enlace entero.</li>
+    <li><b>Tus equipos:</b> el nombre que les pongas y cuándo se conectaron por última vez.</li>
+    <li><b>Actividad:</b> qué subes y bajas (nombre, tamaño y hora), para enseñártelo a ti.</li>
+  </ul>
+
+  <h2>Quién puede verlo</h2>
+  <ul>
+    <li>Las personas y los enlaces con los que tú lo compartas.</li>
+    <li><b>Los archivos no van cifrados de extremo a extremo.</b> Viajan cifrados (HTTPS en la web y TLS en los equipos), pero en el servidor están tal cual, así que quien administra el servidor podría abrirlos. No subas nada que no quieras que pueda ver nadie más.</li>
+    <li>No hay publicidad, ni analítica, ni nada de terceros: la página no carga nada de fuera.</li>
+  </ul>
+
+  <h2>Cookies y almacenamiento</h2>
+  <p>Una sola cookie, la de la sesión (firmada y sin acceso desde JavaScript). En tu navegador se guardan además el tema claro u oscuro y si prefieres lista o cuadrícula.</p>
+
+  <h2>Cuánto se guarda</h2>
+  <ul>
+    <li>Lo que mandas a la papelera se borra solo a los 30 días, o cuando la vacíes.</li>
+    <li>Cada día se hace una copia de seguridad del índice (la lista de carpetas y archivos, sin su contenido), y se guardan las de los últimos 14 días.</li>
+    <li>El servidor web apunta las direcciones IP de las visitas para defenderse de abusos.</li>
+  </ul>
+
+  <h2>Borrarlo todo</h2>
+  <p>Desde tu cuenta, en el menú de tu inicial: <b>Borrar mi cuenta</b>. Se borran al momento tu cuenta, tus archivos, tu papelera, tus enlaces y tus equipos; el contenido desaparece del disco en la siguiente limpieza (como mucho, una hora después).</p>
+
+  <h2>Uso</h2>
+  <p>No uses scloud para guardar ni repartir nada ilegal ni que no sea tuyo. Las cuentas que lo hagan se borrarán.</p>
+
+  <p><a class="boton" href="/">Volver a scloud</a></p>
+</main>
+</body>
+</html>

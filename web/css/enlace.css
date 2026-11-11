@@ -1,0 +1,44 @@
+/* La página pública de un enlace: una sola tarjeta de cristal en el cielo. */
+
+.publico { display: grid; grid-template-rows: auto 1fr; justify-items: center; padding: var(--e-5) var(--e-4) var(--e-7); gap: var(--e-6); }
+.publico-marca { display: flex; align-items: center; gap: var(--e-2); justify-self: start; font: italic 600 1.3rem/1 var(--f-titulo); max-width: 1240px; width: 100%; margin: 0 auto; }
+.publico-tarjeta {
+  align-self: start; width: min(640px, 100%); padding: var(--e-7) var(--e-6) var(--e-6); border-radius: 34px;
+  background: var(--cristal); border: 1px solid var(--cristal-borde); box-shadow: var(--sombra-gota);
+  -webkit-backdrop-filter: var(--desenfoque); backdrop-filter: var(--desenfoque); animation: aparece 500ms var(--ease-out) both;
+  display: grid; gap: var(--e-5);
+}
+.publico-cabeza { display: grid; justify-items: center; text-align: center; gap: var(--e-3); }
+.publico-cabeza .tipo { width: 76px; height: 76px; border-radius: 24px; }
+.publico-cabeza .tipo.carpeta { border-radius: 24px 24px 24px 8px; }
+.publico-cabeza .tipo .ico { width: 38px; height: 38px; stroke-width: 1.3; }
+.publico-de { color: var(--tinta-2); }
+.publico-cabeza h1 { font: italic 600 clamp(1.7rem, 1.3rem + 1.6vw, 2.3rem)/1.1 var(--f-titulo); letter-spacing: -.02em; overflow-wrap: anywhere; text-wrap: balance; }
+.publico-meta { display: flex; flex-wrap: wrap; gap: var(--e-2); justify-content: center; color: var(--tinta-2); font-size: .9rem; }
+.publico-acciones { display: flex; justify-content: center; gap: var(--e-2); flex-wrap: wrap; }
+.publico-lista { background: var(--hoja); border-radius: var(--r-l); padding: var(--e-3); box-shadow: var(--sombra-hoja); }
+.publico-lista .fila { grid-template-columns: 36px minmax(0, 1fr) 90px 44px; }
+.publico-lista .migas { padding: 0 var(--e-3) var(--e-2); }
+.buzon {
+  display: grid; justify-items: center; gap: var(--e-3); padding: var(--e-6) var(--e-4); text-align: center; border-radius: var(--r-l);
+  border: 2px dashed var(--acento-borde); background: var(--hoja); transition: background-color var(--t-rapido) ease, transform var(--t-medio) var(--ease-out);
+}
+.buzon.encima { background: var(--acento-suave); transform: scale(1.01); }
+.buzon .ico { width: 44px; height: 44px; color: var(--acento); stroke-width: 1.4; }
+.buzon p { color: var(--tinta-2); max-width: 40ch; }
+.envios { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.envios .gota-fila { background: var(--hoja); }
+.publico-pie { text-align: center; font-size: .82rem; color: var(--tinta-3); }
+
+@media (max-width: 560px) {
+  .publico-tarjeta { padding: var(--e-6) var(--e-4) var(--e-5); border-radius: 26px; }
+  .publico-lista .fila { grid-template-columns: 36px minmax(0, 1fr) 44px; }
+  .publico-lista .tam { display: none; }
+}
+.vacia-enlace { padding: var(--e-4); }
+.texto-legal { gap: var(--e-3); width: min(760px, 100%); }
+.texto-legal h1 { font: italic 600 2.2rem/1.1 var(--f-titulo); letter-spacing: -.02em; }
+.texto-legal h2 { font: italic 600 1.3rem/1.2 var(--f-titulo); margin-top: var(--e-4); }
+.texto-legal p, .texto-legal li { max-width: 68ch; text-wrap: pretty; }
+.texto-legal ul { margin: 0; padding-left: 1.2em; display: grid; gap: var(--e-2); }
+.publico-marca .marca { color: var(--tinta); }
